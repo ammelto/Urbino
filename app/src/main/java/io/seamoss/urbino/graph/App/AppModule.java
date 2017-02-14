@@ -1,4 +1,4 @@
-package io.seamoss.urbino.graph;
+package io.seamoss.urbino.graph.App;
 
 import android.content.Context;
 import android.content.SharedPreferences;

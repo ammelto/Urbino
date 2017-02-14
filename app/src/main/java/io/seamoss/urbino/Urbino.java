@@ -2,9 +2,9 @@ package io.seamoss.urbino;
 
 import android.app.Application;
 
-import io.seamoss.urbino.graph.AppGraph;
-import io.seamoss.urbino.graph.AppModule;
-import io.seamoss.urbino.graph.DaggerAppGraph;
+import io.seamoss.urbino.graph.App.AppGraph;
+import io.seamoss.urbino.graph.App.AppModule;
+import io.seamoss.urbino.graph.App.DaggerAppGraph;
 
 /**
  * Created by Alexander Melton on 2/11/2017.

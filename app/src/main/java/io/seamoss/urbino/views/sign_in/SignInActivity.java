@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import io.seamoss.urbino.R;
 import io.seamoss.urbino.base.BaseActivity;
-import io.seamoss.urbino.views.home.HomeActivity;
 import io.seamoss.urbino.views.nav.NavActivity;
 
 public class SignInActivity extends BaseActivity {
