@@ -3,9 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.AppCompatTextView
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Fragment!"/>
+        android:fitsSystemWindows="true" >
+
+    </FrameLayout>
 
 </LinearLayout>

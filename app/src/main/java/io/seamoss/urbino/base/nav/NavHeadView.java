@@ -1,4 +1,4 @@
-package io.seamoss.urbino.views.nav;
+package io.seamoss.urbino.base.nav;
 
 import android.content.Context;
 import android.util.AttributeSet;

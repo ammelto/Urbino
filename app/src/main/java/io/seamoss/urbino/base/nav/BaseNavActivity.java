@@ -1,7 +1,6 @@
-package io.seamoss.urbino.views.nav;
+package io.seamoss.urbino.base.nav;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -16,22 +15,16 @@ import io.seamoss.urbino.R;
 import io.seamoss.urbino.base.BaseActivity;
 
 /**
- * Created by Alexander Melton on 2/12/2017.
+ * Created by Alexander Melton on 2/16/2017.
  */
 
-public class NavActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public abstract class BaseNavActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.nav_view) NavigationView navigationView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_nav);
-        ButterKnife.bind(this);
-
-        setSupportActionBar(toolbar);
 
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         if(drawerLayout != null){
@@ -47,6 +40,11 @@ public class NavActivity extends BaseActivity implements NavigationView.OnNaviga
         if(navigationView != null){
             navigationView.setNavigationItemSelectedListener(this);
         }
+    }
+
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_nav;
     }
 
     @Override
@@ -66,3 +64,4 @@ public class NavActivity extends BaseActivity implements NavigationView.OnNaviga
         return true;
     }
 }
+

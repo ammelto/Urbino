@@ -4,4 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="nav_head_height">164dp</dimen>
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="default_margin_2x">32dp</dimen>
+
 </resources>

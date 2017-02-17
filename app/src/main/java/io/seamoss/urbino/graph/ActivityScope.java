@@ -1,4 +1,4 @@
-package io.seamoss.urbino.graph.Activity;
+package io.seamoss.urbino.graph;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

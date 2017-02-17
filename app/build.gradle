@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 25
@@ -37,6 +38,12 @@ dependencies {
     /*---------------------UI / Presentation layer---------------------*/
     // circle image view
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    //Blurry images
+    compile 'jp.wasabeef:blurry:2.1.0'
+    //KenBurnsView
+    compile 'com.flaviofaria:kenburnsview:1.0.7'
+    //Onboarding
+    compile 'com.github.paolorotolo:appintro:4.1.0'
 
     /*---------------------Dependency Injection---------------------*/
     //Dagger 2

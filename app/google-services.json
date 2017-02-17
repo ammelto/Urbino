@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "156926317551",
+    "project_id": "firebase-urbino"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156926317551:android:f8fc3fec95911ccc",
+        "android_client_info": {
+          "package_name": "io.seamoss.urbino"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156926317551-um04ock6q1k5h5ntf87jv6q0jsr7mb1c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.seamoss.urbino",
+            "certificate_hash": "FF3F095903A5E46E5CC7D8498909001B41894E00"
+          }
+        },
+        {
+          "client_id": "156926317551-4ni4nmj8l7r5rv8m0i4k42dgqtdri0m7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEKEnnBuQJ069L5lr4Uqx2UlIqEhA0eEQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

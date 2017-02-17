@@ -7,4 +7,11 @@
     <string name="nav_auth">Sign out</string>
     <string name="nav_open">Nav Opened</string>
     <string name="nav_closed">Nav Closed</string>
+
+    <!-- Sign in -->
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="welcome">Welcome to Urbino</string>
+
+
 </resources>

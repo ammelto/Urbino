@@ -3,15 +3,24 @@ package io.seamoss.urbino.base;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import io.seamoss.urbino.R;
 import io.seamoss.urbino.Urbino;
+import io.seamoss.urbino.graph.AppGraph;
+import io.seamoss.urbino.graph.components.ActivityComponent;
+import io.seamoss.urbino.graph.components.DaggerActivityComponent;
+import io.seamoss.urbino.graph.modules.ActivityModule;
 
 /**
  * Created by Alexander Melton on 2/11/2017.
@@ -21,20 +30,35 @@ public abstract class BaseActivity extends AppCompatActivity{
     @Inject public SharedPreferences prefs;
     @Inject public Context context;
 
+    @Nullable @BindView(R.id.toolbar)
+    public Toolbar toolbar;
+
+    protected ActivityComponent activityComponent;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayoutResource());
+        ButterKnife.bind(this);
+
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
         ((Urbino) getApplication()).getAppGraph().inject(this);
 
     }
 
+    protected @LayoutRes int getLayoutResource(){
+        return R.layout.activity_base;
+    }
     protected void attachFragment(int containerViewId, Fragment fragment){
         attachFragment(containerViewId, fragment, false);
     }
 
     protected void attachFragment(int containerViewId, Fragment fragment, boolean addToBackstack){
-        FragmentTransaction fragmentTransaction = this.getFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(containerViewId, fragment, fragment.getClass().getSimpleName());
 
         if(addToBackstack){
@@ -65,7 +89,7 @@ public abstract class BaseActivity extends AppCompatActivity{
     }
 
     private Fragment getActiveFragment(){
-        FragmentManager fragmentManager = this.getFragmentManager();
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
         if(fragmentManager.getBackStackEntryCount() > 0){
             return fragmentManager
                     .findFragmentByTag(
