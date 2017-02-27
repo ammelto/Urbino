@@ -7,4 +7,5 @@ import io.seamoss.urbino.base.mvp.BaseView;
  */
 
 public interface SigninView extends BaseView {
+    void launchHomeActivity();
 }

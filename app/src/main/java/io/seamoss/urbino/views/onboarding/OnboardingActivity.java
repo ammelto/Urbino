@@ -1,8 +1,11 @@
 package io.seamoss.urbino.views.onboarding;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.res.ResourcesCompat;
 
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
@@ -11,8 +14,7 @@ import javax.inject.Inject;
 
 import io.seamoss.urbino.R;
 import io.seamoss.urbino.Urbino;
-import io.seamoss.urbino.views.onboarding.signin.SigninFragment;
-import io.seamoss.urbino.views.onboarding.slides.IntroFragment;
+import io.seamoss.urbino.views.onboarding.signin.SigninActivity;
 
 public class OnboardingActivity extends AppIntro implements OnboardingView {
 
@@ -24,11 +26,23 @@ public class OnboardingActivity extends AppIntro implements OnboardingView {
         super.onCreate(savedInstanceState);
 
         Urbino.instance().getAppGraph().inject(this);
-        Fragment signinFragment = new SigninFragment();
-        Fragment introFragment = new IntroFragment();
-        
-        addSlide(introFragment);
-        addSlide(signinFragment);
+
+        addSlide(AppIntroFragment.newInstance("Urbino",
+                "Why should school be boring?",
+                R.drawable.ic_logo_24dp,
+                ResourcesCompat.getColor(getResources(), R.color.tab5, null)));
+        addSlide(AppIntroFragment.newInstance("Placeholder",
+                "Text",
+                R.drawable.ic_logo_24dp,
+                ResourcesCompat.getColor(getResources(), R.color.tab3, null)));
+        addSlide(AppIntroFragment.newInstance("Placeholder",
+                "Text",
+                R.drawable.ic_logo_24dp,
+                ResourcesCompat.getColor(getResources(), R.color.tab2, null)));
+        addSlide(AppIntroFragment.newInstance("Placeholder",
+                "Text",
+                R.drawable.ic_logo_24dp,
+                ResourcesCompat.getColor(getResources(), R.color.tab4, null)));
 
     }
 
@@ -52,7 +66,10 @@ public class OnboardingActivity extends AppIntro implements OnboardingView {
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
-        super.onDonePressed(currentFragment);
+        Intent intent = new Intent(this, SigninActivity.class);
+        intent.putExtras(getIntent());
+        startActivity(intent);
+        finish();
         // Do something when users tap on Done button.
     }
 

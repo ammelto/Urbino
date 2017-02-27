@@ -2,6 +2,9 @@ package io.seamoss.urbino.graph.modules;
 
 import dagger.Module;
 import dagger.Provides;
+import io.seamoss.urbino.Urbino;
+import io.seamoss.urbino.data.api.UrbinoApi;
+import io.seamoss.urbino.data.models.User;
 import io.seamoss.urbino.views.home.HomePresenter;
 import io.seamoss.urbino.views.home.boards.BoardsPresenter;
 import io.seamoss.urbino.views.onboarding.OnboardingPresenter;
@@ -15,16 +18,16 @@ import io.seamoss.urbino.views.onboarding.signin.SigninPresenter;
 public class PresenterModule {
 
     @Provides
-    HomePresenter providesHomePresenter(){
-        return new HomePresenter();
+    HomePresenter providesHomePresenter(User user){
+        return new HomePresenter(user);
     }
 
     @Provides
-    BoardsPresenter providesBoardPresenter(){ return new BoardsPresenter();}
+    BoardsPresenter providesBoardPresenter(User user){ return new BoardsPresenter(user);}
 
     @Provides
     OnboardingPresenter providesOnboardingPresenter(){return new OnboardingPresenter();}
 
     @Provides
-    SigninPresenter providesSigninPresenter(){ return new SigninPresenter();}
+    SigninPresenter providesSigninPresenter(User user, UrbinoApi urbinoApi){ return new SigninPresenter(user, urbinoApi);}
 }

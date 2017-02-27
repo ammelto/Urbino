@@ -9,10 +9,17 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.seamoss.urbino.R;
+import io.seamoss.urbino.Urbino;
 import io.seamoss.urbino.base.BaseActivity;
+import io.seamoss.urbino.data.models.User;
+import timber.log.Timber;
 
 /**
  * Created by Alexander Melton on 2/16/2017.
@@ -32,7 +39,7 @@ public abstract class BaseNavActivity extends BaseActivity implements Navigation
                     this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_closed);
 
             drawerLayout.addDrawerListener(toggle);
-            getSupportActionBar().setHomeButtonEnabled(true);
+            if(getSupportActionBar() != null) getSupportActionBar().setHomeButtonEnabled(true);
 
             toggle.syncState();
         }

@@ -22,19 +22,29 @@ import rx.Observable;
 @Module
 public class AppModule {
     private final Urbino application;
+    private final User currentUser;
 
     public AppModule(Urbino app){
         this.application = app;
+        this.currentUser = new User();
     }
 
-    @Provides @AppScope
+    @Provides
+    @AppScope
     Context providesApplicationContext(){
         return application;
     }
 
-    @Provides @AppScope
+    @Provides
+    @AppScope
     SharedPreferences providesSharedPreferences(Context app){
         return app.getSharedPreferences("Shared_Prefs", Context.MODE_PRIVATE);
+    }
+
+    @Provides
+    @AppScope
+    User providesCurrentUser(){
+        return currentUser;
     }
 
 }

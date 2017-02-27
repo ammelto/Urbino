@@ -20,6 +20,9 @@
         <activity android:name=".views.home.HomeActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".views.onboarding.signin.SigninActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

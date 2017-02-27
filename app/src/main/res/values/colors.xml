@@ -8,5 +8,13 @@
     <color name="colorSecondaryText">#757575</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
-    <color name="greyTransparent">#c0424242</color>
+    <color name="greyTransparent">#b0000000</color>
+
+    <!-- onboarding -->
+    <color name="tab1">#8BC34A</color>
+    <color name="tab2">#009688</color>
+    <color name="tab3">#f44336</color>
+    <color name="tab4">#4CAF50</color>
+    <color name="tab5">#00BCD4</color>
+
 </resources>

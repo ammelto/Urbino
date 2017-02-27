@@ -1,15 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--ImageView
+        android:id="@+id/background_one"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:scaleType="matrix"
+        android:src="@mipmap/map_texture"/>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <ImageView
+        android:id="@+id/background_two"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+
+        android:scaleType="centerCrop"
+        android:src="@mipmap/map_texture"/-->
+
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true" >
+        android:src="@mipmap/map_texture" />
 
-    </FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/greyTransparent">
+    </RelativeLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="2"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:textSize="45sp"
+                android:id="@+id/Header"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/urbino_logo_white"
+                android:text="@string/app_name"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/Header"
+                android:textSize="24sp"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorIcons"
+                android:text="@string/signin_subtext"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/authentication_google_sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="85dp"
+                android:layout_gravity="center_horizontal"
+                app:buttonSize="wide"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <!--Button
+                android:id="@+id/google_auth_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="85dp"
+                android:padding="16dp"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/signin_button"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" /-->
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

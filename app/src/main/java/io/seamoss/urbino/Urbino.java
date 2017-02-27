@@ -7,6 +7,7 @@ import io.seamoss.urbino.graph.modules.ActivityModule;
 import io.seamoss.urbino.graph.modules.AppModule;
 import io.seamoss.urbino.graph.DaggerAppGraph;
 import io.seamoss.urbino.graph.modules.PresenterModule;
+import timber.log.Timber;
 
 /**
  * Created by Alexander Melton on 2/11/2017.
@@ -30,6 +31,8 @@ public class Urbino extends Application {
                 .build();
 
         appGraph.inject(this);
+
+        Timber.plant(new Timber.DebugTree());
     }
 
     public static Urbino instance(){
