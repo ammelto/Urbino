@@ -8,6 +8,7 @@ import java.util.List;
 import dagger.Module;
 import dagger.Provides;
 import io.seamoss.urbino.Urbino;
+import io.seamoss.urbino.data.SharedPrefsManager;
 import io.seamoss.urbino.data.models.User;
 import io.seamoss.urbino.domain.repository.UserRepository;
 import io.seamoss.urbino.graph.ActivityScope;
@@ -39,6 +40,13 @@ public class AppModule {
     @AppScope
     SharedPreferences providesSharedPreferences(Context app){
         return app.getSharedPreferences("Shared_Prefs", Context.MODE_PRIVATE);
+    }
+
+
+    @Provides
+    @AppScope
+    SharedPrefsManager providesSharedPrefsManager(){
+        return new SharedPrefsManager(application);
     }
 
     @Provides

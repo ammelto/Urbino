@@ -1,5 +1,6 @@
 package io.seamoss.urbino.views.onboarding.signin;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.Status;
 
 import javax.inject.Inject;
@@ -42,11 +44,17 @@ public class SigninActivity extends BaseActivity implements SigninView {
 
     private GoogleApiClient googleApiClient;
 
+    private ProgressDialog progressDialog;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Urbino.instance().getAppGraph().inject(this);
         signinPresenter.attachView(this);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Signing in");
+        progressDialog.setMessage("This will only take a moment.");
+        progressDialog.setCancelable(false);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -60,6 +68,14 @@ public class SigninActivity extends BaseActivity implements SigninView {
 
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setOnClickListener(this::onSignInClick);
+
+        OptionalPendingResult<GoogleSignInResult> pendingResult = Auth.GoogleSignInApi.silentSignIn(googleApiClient);
+        if(pendingResult.isDone()){
+            progressDialog.show();
+            GoogleSignInResult result = pendingResult.get();
+            if(result.isSuccess()) signinPresenter.onSignInSuccess(result.getSignInAccount());
+            else onGoogleSigninFail(result.getStatus());
+        }
 
     }
 
@@ -75,6 +91,7 @@ public class SigninActivity extends BaseActivity implements SigninView {
 
         Timber.d("Activity Result");
         if(requestCode == RC_SIGN_IN){
+            progressDialog.show();
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if(result.isSuccess()) signinPresenter.onSignInSuccess(result.getSignInAccount());
             else onGoogleSigninFail(result.getStatus());
@@ -92,7 +109,9 @@ public class SigninActivity extends BaseActivity implements SigninView {
     @Override
     public void launchHomeActivity() {
         Intent intent = new Intent(this, HomeActivity.class);
+        progressDialog.dismiss();
         startActivity(intent);
+        finish();
     }
 
     @Override

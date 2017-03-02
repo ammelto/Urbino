@@ -7,4 +7,6 @@ import io.seamoss.urbino.base.mvp.BaseView;
  */
 
 public interface HomeView extends BaseView {
+
+    void gotoPublicBoardsActivity();
 }

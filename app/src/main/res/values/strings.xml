@@ -21,4 +21,7 @@
     <string name="fab_option_public">Add public board</string>
     <string name="fab_option_code">Add board from class code</string>
 
+    <!-- Public Boards -->
+    <string name="public_boards_logo">Public Boards</string>
+
 </resources>

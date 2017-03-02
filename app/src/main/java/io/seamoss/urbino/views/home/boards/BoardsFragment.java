@@ -23,6 +23,7 @@ import io.seamoss.urbino.R;
 import io.seamoss.urbino.Urbino;
 import io.seamoss.urbino.base.BaseFragment;
 import io.seamoss.urbino.data.models.Board;
+import io.seamoss.urbino.views.home.HomeView;
 import io.seamoss.urbino.views.public_boards_list.PublicBoardsActivity;
 
 /**
@@ -40,12 +41,15 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
     @BindView(R.id.home_fab)
     FabSpeedDial fab;
 
+    HomeView homeView;
+
     private BoardAdapter boardAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Urbino.instance().getAppGraph().inject(this);
+
     }
 
     @Override
@@ -82,13 +86,15 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
         boardAdapter = new BoardAdapter();
         boardRecycler.setAdapter(boardAdapter);
 
+        homeView = (HomeView) getActivity();
+
         addScrollListener(boardRecycler);
         fab.setMenuListener((new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.action_goto_public_boards:
-                        switchToPublicBoardsFragment();
+                        homeView.gotoPublicBoardsActivity();
                         break;
                     case R.id.action_goto_class_code:
                         break;
@@ -98,10 +104,6 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
         }));
 
         return fragmentView;
-    }
-
-    private void switchToPublicBoardsFragment(){
-        switchFragment(R.layout.fragment_public_boards_list, new PublicBoardsActivity(), true);
     }
 
     private void addScrollListener(RecyclerView recyclerView) {

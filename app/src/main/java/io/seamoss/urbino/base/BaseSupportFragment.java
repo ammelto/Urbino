@@ -1,7 +1,7 @@
 package io.seamoss.urbino.base;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+
+import android.app.Fragment;
 
 import butterknife.Unbinder;
 
@@ -9,7 +9,7 @@ import butterknife.Unbinder;
  * Created by Alexander Melton on 2/13/2017.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseSupportFragment extends Fragment {
     private Unbinder unbinder = Unbinder.EMPTY;
 
     @Override

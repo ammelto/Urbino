@@ -17,6 +17,7 @@ import javax.inject.Inject;
 
 import io.seamoss.urbino.R;
 import io.seamoss.urbino.Urbino;
+import io.seamoss.urbino.data.SharedPrefsManager;
 import io.seamoss.urbino.views.onboarding.signin.SigninActivity;
 
 public class OnboardingActivity extends AppIntro implements OnboardingView {
@@ -24,11 +25,16 @@ public class OnboardingActivity extends AppIntro implements OnboardingView {
     @Inject
     OnboardingPresenter onboardingPresenter;
 
+    @Inject
+    SharedPrefsManager sharedPrefsManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Urbino.instance().getAppGraph().inject(this);
+
+        if(sharedPrefsManager.isOnboarded()) endOnboarding();
 
         AppIntroFragment slide1 = AppIntroFragment.newInstance("Urbino",
                 "Why should school be boring?",
@@ -79,6 +85,7 @@ public class OnboardingActivity extends AppIntro implements OnboardingView {
     }
 
     private void endOnboarding(){
+        sharedPrefsManager.setOnboarding(true);
         Intent intent = new Intent(this, SigninActivity.class);
         intent.putExtras(getIntent());
         startActivity(intent);

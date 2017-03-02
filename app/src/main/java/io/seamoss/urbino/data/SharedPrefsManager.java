@@ -14,12 +14,29 @@ import android.preference.PreferenceManager;
  */
 
 public class SharedPrefsManager {
-    public static final String ZIP = "zip";
+    public static final Boolean NOT_ONBOARDED = false;
+    public static final String ONBOARDING = "urbino.onboarding";
 
     private SharedPreferences sharedPreferences;
 
     public SharedPrefsManager(Application application){
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(application);
+    }
+
+    public boolean isOnboarded(){
+        return sharedPreferences.getBoolean(SharedPrefsManager.ONBOARDING, SharedPrefsManager.NOT_ONBOARDED);
+    }
+
+    public void setOnboarding(Boolean isOnboarded){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(SharedPrefsManager.ONBOARDING, isOnboarded);
+        editor.apply();
+    }
+
+    public void clearSharedPrefs(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 
 }

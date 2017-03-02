@@ -61,14 +61,18 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //Blurry images
     compile 'jp.wasabeef:blurry:2.1.0'
-    //KenBurnsView
-    compile 'com.flaviofaria:kenburnsview:1.0.7'
     //Onboarding
     compile 'com.github.paolorotolo:appintro:4.1.0'
     //Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
     //FAB
     compile 'io.github.yavski:fab-speed-dial:1.0.6'
+    //View Pager
+    compile 'com.github.florent37:materialviewpager:1.2.1'
+    //dependencies
+    compile 'com.jpardogo.materialtabstrip:library:1.1.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.flaviofaria:kenburnsview:1.0.7'
 
     /*---------------------Dependency Injection---------------------*/
     //Dagger 2

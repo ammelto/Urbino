@@ -25,6 +25,13 @@
         <activity android:name=".views.onboarding.signin.SigninActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".views.public_boards_list.PublicBoardsActivity"
+            android:parentActivityName=".views.home.HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.home.HomeActivity" />
+        </activity>
+
     </application>
 
 </manifest>
