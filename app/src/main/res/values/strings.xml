@@ -14,5 +14,11 @@
     <string name="welcome">Welcome to Urbino</string>
     <string name="signin_subtext">Start mapping your mind.</string>
 
+    <!-- Home -->
+    <string name="board_name">Divisionista</string>
+    <string name="board_description">Wow this is a long description why is this so long does it need to be so long?</string>
+    <string name="board_author">Dr. Sonogo</string>
+    <string name="fab_option_public">Add public board</string>
+    <string name="fab_option_code">Add board from class code</string>
 
 </resources>

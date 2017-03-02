@@ -1,6 +1,7 @@
 package io.seamoss.urbino.base;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 
 import butterknife.Unbinder;
 
@@ -23,5 +24,16 @@ public abstract class BaseFragment extends Fragment {
 
     protected BaseActivity getBaseActivity(){
         return (BaseActivity) getActivity();
+    }
+
+    protected void switchFragment(int containerViewId, Fragment fragment, boolean addToBackstack){
+        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(containerViewId, fragment, fragment.getClass().getSimpleName());
+
+        if(addToBackstack){
+            fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
+        }
+
+        fragmentTransaction.commit();
     }
 }

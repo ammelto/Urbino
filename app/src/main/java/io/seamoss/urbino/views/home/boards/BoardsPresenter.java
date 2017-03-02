@@ -18,12 +18,16 @@ public class BoardsPresenter extends BasePresenter<BoardsView> {
     @Inject
     public BoardsPresenter(User user) {
         this.user = user;
+    }
 
+    public void buildView(){
         for(Board board : user.getBoards()){
             Timber.d(board.getDescription());
             Timber.d(board.getName());
             Timber.d(board.getUrl());
         }
+
+        getView().fillBoardsList(user.getBoards());
     }
 
     @Override

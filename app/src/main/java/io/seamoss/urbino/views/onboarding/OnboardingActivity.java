@@ -1,10 +1,13 @@
 package io.seamoss.urbino.views.onboarding;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 
 import com.github.paolorotolo.appintro.AppIntro;
@@ -27,10 +30,12 @@ public class OnboardingActivity extends AppIntro implements OnboardingView {
 
         Urbino.instance().getAppGraph().inject(this);
 
-        addSlide(AppIntroFragment.newInstance("Urbino",
+        AppIntroFragment slide1 = AppIntroFragment.newInstance("Urbino",
                 "Why should school be boring?",
                 R.drawable.ic_logo_24dp,
-                ResourcesCompat.getColor(getResources(), R.color.tab5, null)));
+                ResourcesCompat.getColor(getResources(), R.color.tab5, null));
+        addSlide(slide1);
+        //setBarColor(ContextCompat.getColor(R.color.tab5));
         addSlide(AppIntroFragment.newInstance("Placeholder",
                 "Text",
                 R.drawable.ic_logo_24dp,
@@ -43,6 +48,8 @@ public class OnboardingActivity extends AppIntro implements OnboardingView {
                 "Text",
                 R.drawable.ic_logo_24dp,
                 ResourcesCompat.getColor(getResources(), R.color.tab4, null)));
+
+        //getWindow().getDecorView().setSystemUiVisibility();
 
     }
 
@@ -61,16 +68,21 @@ public class OnboardingActivity extends AppIntro implements OnboardingView {
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
+        endOnboarding();
         // Do something when users tap on Skip button.
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
+        endOnboarding();
+        // Do something when users tap on Done button.
+    }
+
+    private void endOnboarding(){
         Intent intent = new Intent(this, SigninActivity.class);
         intent.putExtras(getIntent());
         startActivity(intent);
         finish();
-        // Do something when users tap on Done button.
     }
 
     @Override

@@ -3,7 +3,6 @@ package io.seamoss.urbino.graph;
 import dagger.Component;
 import io.seamoss.urbino.Urbino;
 import io.seamoss.urbino.base.BaseActivity;
-import io.seamoss.urbino.data.models.User;
 import io.seamoss.urbino.graph.modules.ActivityModule;
 import io.seamoss.urbino.graph.modules.AppModule;
 import io.seamoss.urbino.graph.modules.NetworkModule;
@@ -11,6 +10,7 @@ import io.seamoss.urbino.graph.modules.PresenterModule;
 import io.seamoss.urbino.views.home.HomeActivity;
 import io.seamoss.urbino.base.nav.NavHeadView;
 import io.seamoss.urbino.views.home.boards.BoardsFragment;
+import io.seamoss.urbino.views.public_boards_list.PublicBoardsActivity;
 import io.seamoss.urbino.views.onboarding.OnboardingActivity;
 import io.seamoss.urbino.views.onboarding.signin.SigninActivity;
 
@@ -35,5 +35,7 @@ public interface AppGraph {
     void inject(SigninActivity signinActivity);
 
     void inject(BoardsFragment boardsFragment);
+
+    void inject(PublicBoardsActivity boardsFragment);
 
 }
