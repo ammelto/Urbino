@@ -12,6 +12,13 @@ import io.seamoss.urbino.data.models.Board;
  */
 
 public class BoardAdapter extends BaseRecyclerAdapter<Board, BoardsViewHolder> {
+
+    private final Boolean isPublic;
+
+    public BoardAdapter(Boolean isPublic){
+        this.isPublic = isPublic;
+    }
+
     @Override
     protected int getLayoutRes() {
         return R.layout.item_board;
@@ -24,6 +31,6 @@ public class BoardAdapter extends BaseRecyclerAdapter<Board, BoardsViewHolder> {
 
     @Override
     public void onBindViewHolder(BoardsViewHolder holder, int position) {
-        holder.bind(get(position));
+        holder.bind(get(position), isPublic);
     }
 }

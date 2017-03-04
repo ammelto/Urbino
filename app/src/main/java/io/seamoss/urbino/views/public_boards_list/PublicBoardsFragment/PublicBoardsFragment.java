@@ -15,6 +15,8 @@ import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.MaterialViewPagerHelper;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -23,8 +25,14 @@ import io.seamoss.urbino.R;
 import io.seamoss.urbino.Urbino;
 import io.seamoss.urbino.base.BaseFragment;
 import io.seamoss.urbino.base.BaseSupportFragment;
+import io.seamoss.urbino.data.api.UrbinoApi;
+import io.seamoss.urbino.data.models.Board;
 import io.seamoss.urbino.data.models.User;
 import io.seamoss.urbino.views.home.boards.BoardAdapter;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * Created by Alexander Melton on 3/2/2017.
@@ -39,6 +47,40 @@ public class PublicBoardsFragment extends Fragment {
     User user;
 
     private BoardAdapter boardAdapter;
+    private String subject;
+
+    @Inject
+    public UrbinoApi urbinoApi;
+
+    private Subscription localSubjectSubscription;
+
+    private void fetchData(String subject){
+
+        localSubjectSubscription = urbinoApi.getPublicBoards(subject)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::buildBoardsList, e -> {
+                    Timber.e(e, "Error loading pubic boards for " +subject);
+                });
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchData(this.getArguments().getString("subject"));
+    }
+
+    @Override
+    public void onPause() {
+        localSubjectSubscription.unsubscribe();
+        localSubjectSubscription = null;
+        super.onPause();
+    }
+
+    public void buildBoardsList(List<Board> boards){
+        boardAdapter.swapData(boards);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,12 +106,11 @@ public class PublicBoardsFragment extends Fragment {
                 linearLayoutManager.getOrientation());
         publicBoardRecycler.addItemDecoration(dividerItemDecoration);
 
-        boardAdapter = new BoardAdapter();
+        boardAdapter = new BoardAdapter(true);
         publicBoardRecycler.setAdapter(boardAdapter);
 
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), publicBoardRecycler);
 
-        boardAdapter.swapData(user.getBoards());
         return fragmentView;
     }
 

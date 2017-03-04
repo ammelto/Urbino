@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -35,8 +37,18 @@ public class BoardsViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void bind(Board board){
+    public void bind(Board board, boolean isPublic){
         boardName.setText(board.getName());
         boardDescription.setText(board.getDescription());
+
+        if(board.getImage() != null){
+            Picasso.with(itemView.getContext())
+                    .load(board.getImage())
+                    .into(circleImageView);
+        }
+
+        if(isPublic){
+            infoIcon.setVisibility(View.INVISIBLE);
+        }
     }
 }

@@ -14,7 +14,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "API_URL", "\"http://" + getLocalIp("wlan0") + ":8080/\""
-        buildConfigField "String", "API_URL_PROD", "\"http://10.230.21.172:8080/\""
+        buildConfigField "String", "API_URL_PROD", "\"http://10.0.2.2:8080/\""
         buildConfigField "String", "API_KEY", "\"KEY\""
 
     }

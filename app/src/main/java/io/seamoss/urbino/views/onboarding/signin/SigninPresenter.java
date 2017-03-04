@@ -1,16 +1,11 @@
 package io.seamoss.urbino.views.onboarding.signin;
 
-import android.icu.text.LocaleDisplayNames;
-import android.util.Log;
-
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 
 import javax.inject.Inject;
 
 import io.seamoss.urbino.base.mvp.BasePresenter;
 import io.seamoss.urbino.data.api.UrbinoApi;
-import io.seamoss.urbino.data.models.Board;
 import io.seamoss.urbino.data.models.UrbinoProfile;
 import io.seamoss.urbino.data.models.User;
 import rx.Subscription;
@@ -56,7 +51,7 @@ public class SigninPresenter extends BasePresenter<SigninView> {
     }
 
     protected void fetchUrbinoProfile(){
-        urbinoProfileSubscription = urbinoApi.getBoards()
+        urbinoProfileSubscription = urbinoApi.getUser()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::updateUser, e -> Timber.d(e, "Failed"));

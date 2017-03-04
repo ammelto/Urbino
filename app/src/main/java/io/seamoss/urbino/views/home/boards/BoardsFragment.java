@@ -83,7 +83,7 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
                 linearLayoutManager.getOrientation());
         boardRecycler.addItemDecoration(dividerItemDecoration);
 
-        boardAdapter = new BoardAdapter();
+        boardAdapter = new BoardAdapter(false);
         boardRecycler.setAdapter(boardAdapter);
 
         homeView = (HomeView) getActivity();

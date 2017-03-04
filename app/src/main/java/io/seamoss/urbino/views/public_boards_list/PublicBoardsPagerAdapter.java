@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.List;
+
+import io.seamoss.urbino.data.models.Subject;
 import io.seamoss.urbino.views.public_boards_list.PublicBoardsFragment.PublicBoardsFragment;
 
 /**
@@ -12,45 +15,35 @@ import io.seamoss.urbino.views.public_boards_list.PublicBoardsFragment.PublicBoa
  */
 
 public class PublicBoardsPagerAdapter extends FragmentStatePagerAdapter {
+
+    private List<Subject> subjects;
+
     public PublicBoardsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        switch (position % 4) {
-            //case 0:
-            //    return RecyclerViewFragment.newInstance();
-            //case 1:
-            //    return RecyclerViewFragment.newInstance();
-            //case 2:
-            //    return WebViewFragment.newInstance();
-            default:
-                return new PublicBoardsFragment();
-        }
+        PublicBoardsFragment publicBoardsFragment = new PublicBoardsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("subject", subjects.get(position).getName());
+        publicBoardsFragment.setArguments(bundle);
+        return publicBoardsFragment;
     }
 
     @Override
     public int getCount() {
-        return 6;
+        if(subjects == null) return 0;
+        else return subjects.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                return "Mathematics";
-            case 1:
-                return "English";
-            case 2:
-                return "History";
-            case 3:
-                return "Engineering";
-            case 4:
-                return "Literature";
-            case 5:
-                return "Misc";
-        }
-        return "";
+        if(subjects == null) return "";
+        else return subjects.get(position).getName();
+    }
+
+    public void setSubjects(List<Subject> subjects){
+        this.subjects = subjects;
     }
 }

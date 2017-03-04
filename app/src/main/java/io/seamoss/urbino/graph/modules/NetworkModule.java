@@ -28,7 +28,7 @@ public class NetworkModule {
 
     @Provides
     @AppScope
-    public UrbinoApi provicesBoardsApi(Retrofit adapter){
+    public UrbinoApi providesBoardsApi(Retrofit adapter){
         return adapter.create(UrbinoApi.class);
     }
 }

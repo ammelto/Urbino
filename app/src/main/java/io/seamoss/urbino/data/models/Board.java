@@ -1,5 +1,7 @@
 package io.seamoss.urbino.data.models;
 
+import android.support.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -13,6 +15,9 @@ public class Board {
     private String description;
     @SerializedName("url")
     private String url;
+    @Nullable
+    @SerializedName("image")
+    private String image;
 
     public String getName() {
         return name;
@@ -36,5 +41,14 @@ public class Board {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Nullable
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(@Nullable String image) {
+        this.image = image;
     }
 }
