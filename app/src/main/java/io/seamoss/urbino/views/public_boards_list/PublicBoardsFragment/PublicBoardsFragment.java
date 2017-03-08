@@ -1,5 +1,6 @@
 package io.seamoss.urbino.views.public_boards_list.PublicBoardsFragment;
 
+import android.database.Observable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,9 +30,11 @@ import io.seamoss.urbino.data.api.UrbinoApi;
 import io.seamoss.urbino.data.models.Board;
 import io.seamoss.urbino.data.models.User;
 import io.seamoss.urbino.views.home.boards.BoardAdapter;
+import io.seamoss.urbino.views.public_boards_list.PublicBoardsView;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
 /**
@@ -46,23 +49,27 @@ public class PublicBoardsFragment extends Fragment {
     @Inject
     User user;
 
+    PublicBoardsView publicBoardsView;
+
     private BoardAdapter boardAdapter;
     private String subject;
 
     @Inject
     public UrbinoApi urbinoApi;
 
-    private Subscription localSubjectSubscription;
+    private CompositeSubscription compositeSubscription;
+
+    private rx.Observable<Board> onBoardSelectedObservable;
 
     private void fetchData(String subject){
+        compositeSubscription = new CompositeSubscription();
 
-        localSubjectSubscription = urbinoApi.getPublicBoards(subject)
+        compositeSubscription.add(urbinoApi.getPublicBoards(subject)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::buildBoardsList, e -> {
                     Timber.e(e, "Error loading pubic boards for " +subject);
-                });
-
+                }));
     }
 
     @Override
@@ -73,13 +80,22 @@ public class PublicBoardsFragment extends Fragment {
 
     @Override
     public void onPause() {
-        localSubjectSubscription.unsubscribe();
-        localSubjectSubscription = null;
+        compositeSubscription.unsubscribe();
+        compositeSubscription = null;
         super.onPause();
     }
 
     public void buildBoardsList(List<Board> boards){
         boardAdapter.swapData(boards);
+        compositeSubscription.add(onBoardSelectedObservable
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onItemClicked, e -> Timber.d("Something went wrong clicking the board")));
+    }
+
+    public void onItemClicked(Board board){
+        Timber.d(board.getName());
+        publicBoardsView.gotoBoardInfoActivity(board);
     }
 
     @Override
@@ -107,9 +123,12 @@ public class PublicBoardsFragment extends Fragment {
         publicBoardRecycler.addItemDecoration(dividerItemDecoration);
 
         boardAdapter = new BoardAdapter(true);
+        onBoardSelectedObservable = boardAdapter.getBoardSelected();
         publicBoardRecycler.setAdapter(boardAdapter);
 
         MaterialViewPagerHelper.registerRecyclerView(getActivity(), publicBoardRecycler);
+
+        publicBoardsView = (PublicBoardsView) getActivity();
 
         return fragmentView;
     }

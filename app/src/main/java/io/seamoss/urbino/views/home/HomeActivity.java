@@ -1,22 +1,18 @@
 package io.seamoss.urbino.views.home;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
 
 import javax.inject.Inject;
 
-import butterknife.ButterKnife;
 import io.seamoss.urbino.R;
 import io.seamoss.urbino.Urbino;
 import io.seamoss.urbino.base.nav.BaseNavActivity;
 import io.seamoss.urbino.data.SharedPrefsManager;
+import io.seamoss.urbino.data.models.Board;
 import io.seamoss.urbino.views.home.boards.BoardsFragment;
-import io.seamoss.urbino.views.onboarding.signin.SigninActivity;
 import io.seamoss.urbino.views.public_boards_list.PublicBoardsActivity;
+import io.seamoss.urbino.views.home.board_info.BoardInfoActivity;
 
 /**
  * Created by Alexander Melton on 2/11/2017.
@@ -57,5 +53,22 @@ public class HomeActivity extends BaseNavActivity implements HomeView{
         Intent intent = new Intent(this, PublicBoardsActivity.class);
         intent.putExtras(getIntent());
         startActivity(intent);
+    }
+
+    @Override
+    public void gotoBoardInfoActivity(Board board) {
+        Intent intent = new Intent(this, BoardInfoActivity.class);
+        intent.putExtras(getIntent());
+        intent.putExtra("NAME", board.getName());
+        intent.putExtra("URL", board.getUrl());
+        intent.putExtra("SUBSCRIBED", true);
+        startActivity(intent);
+    }
+
+    @Override
+    public void launchCourseCodeDialog() {
+        CourseCodeDialog courseCodeDialog = new CourseCodeDialog();
+
+        courseCodeDialog.show(getFragmentManager(), null);
     }
 }

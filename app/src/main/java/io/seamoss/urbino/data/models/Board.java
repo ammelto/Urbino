@@ -1,5 +1,7 @@
 package io.seamoss.urbino.data.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;

@@ -24,4 +24,21 @@
     <!-- Public Boards -->
     <string name="public_boards_logo">Public Boards</string>
 
+    <!-- Board Info -->
+    <string name="board_info">Board information</string>
+    <string name="info_nodes">16 nodes</string>
+    <string name="info_duration">8 weeks remaining</string>
+    <string name="info_owner">Dr. Sanogo</string>
+    <string name="info_subject">Mathematics</string>
+    <string name="info_delete_board">Delete board</string>
+
+    <!-- Custom course code dialog -->
+    <string name="code_dialog_hint">Course code</string>
+    <string name="code_dialog_accept">Find course</string>
+    <string name="code_dialog_cancel">Cancel</string>
+    <string name="code_dialog_text">Enter the course code for a private or public board.</string>
+
+    <!-- debug -->
+    <string name="sample_string">Bacon ipsum dolor amet I have a 10 year old son. He has words. He is so good with these words it\'s unbelievable. I think my strongest asset maybe by far is my temperament. I have a placeholding temperament. That other text? Sadly, it’s no longer a 10. That other text? Sadly, it’s no longer a 10. If Trump Ipsum weren’t my own words, perhaps I’d be dating it. Lorem Ispum is a choke artist. It chokes! My text is long and beautiful, as, it has been well documented, are various other parts of my website. It’s about making placeholder text great again. That’s what people want, they want placeholder text to be great again. I think the only difference between me and the other placeholder text is that I’m more honest and my words are more beautiful. My text is long and beautiful, as, it has been well documented, are various other parts of my website. If Trump Ipsum weren’t my own words, perhaps I’d be dating it.</string>
+
 </resources>

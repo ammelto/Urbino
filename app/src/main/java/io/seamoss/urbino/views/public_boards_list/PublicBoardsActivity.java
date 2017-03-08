@@ -1,13 +1,11 @@
 package io.seamoss.urbino.views.public_boards_list;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.PagerTabStrip;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
@@ -18,20 +16,19 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.seamoss.urbino.R;
 import io.seamoss.urbino.Urbino;
-import io.seamoss.urbino.base.BaseActivity;
-import io.seamoss.urbino.base.BaseFragment;
-import io.seamoss.urbino.data.api.UrbinoApi;
+import io.seamoss.urbino.base.nav.BaseNavActivity;
+import io.seamoss.urbino.data.models.Board;
 import io.seamoss.urbino.data.models.Subject;
-import rx.Subscription;
+import io.seamoss.urbino.views.home.board_info.BoardInfoActivity;
+import io.seamoss.urbino.views.public_boards_list.board_info_public.BoardInfoPublicActivity;
 
 /**
  * Created by Alexander Melton on 2/28/2017.
  */
 
-public class PublicBoardsActivity extends BaseActivity implements PublicBoardsView {
+public class PublicBoardsActivity extends BaseNavActivity implements PublicBoardsView {
 
     @Inject
     PublicBoardsPresenter publicBoardsPresenter;
@@ -41,6 +38,9 @@ public class PublicBoardsActivity extends BaseActivity implements PublicBoardsVi
 
     @BindView(R.id.public_board_logo)
     TextView textView;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
 
     private List<Subject> subjects;
 
@@ -52,14 +52,18 @@ public class PublicBoardsActivity extends BaseActivity implements PublicBoardsVi
         Toolbar toolbar = viewPager.getToolbar();
 
         if(getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            setSupportActionBar(toolbar);
+            viewPager.getToolbar().setNavigationOnClickListener(this::navClickListener);
             getSupportActionBar().setTitle("");
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(true);
             getSupportActionBar().setDisplayUseLogoEnabled(false);
             getSupportActionBar().setHomeButtonEnabled(true);
-            setSupportActionBar(toolbar);
         }
+    }
+
+    public void navClickListener(View v){
+        drawerLayout.openDrawer(Gravity.START);
     }
 
     public HeaderDesign getHeaderDesign(int page){
@@ -96,5 +100,15 @@ public class PublicBoardsActivity extends BaseActivity implements PublicBoardsVi
     @Override
     protected int getLayoutResource() {
         return R.layout.activity_public_boards_list;
+    }
+
+    @Override
+    public void gotoBoardInfoActivity(Board board) {
+        Intent intent = new Intent(this, BoardInfoPublicActivity.class);
+        intent.putExtras(getIntent());
+        intent.putExtra("NAME", board.getName());
+        intent.putExtra("URL", board.getUrl());
+        intent.putExtra("SUBSCRIBED", false);
+        startActivity(intent);
     }
 }

@@ -23,8 +23,13 @@ import io.seamoss.urbino.R;
 import io.seamoss.urbino.Urbino;
 import io.seamoss.urbino.base.BaseFragment;
 import io.seamoss.urbino.data.models.Board;
+import io.seamoss.urbino.views.home.CourseCodeDialog;
 import io.seamoss.urbino.views.home.HomeView;
-import io.seamoss.urbino.views.public_boards_list.PublicBoardsActivity;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
+import timber.log.Timber;
 
 /**
  * Created by Alexander Melton on 2/16/2017.
@@ -41,6 +46,9 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
     @BindView(R.id.home_fab)
     FabSpeedDial fab;
 
+    Observable<Board> boardInfoClickedObservable;
+    Observable<Board> boardSelectedObservable;
+    private CompositeSubscription compositeSubscription;
     HomeView homeView;
 
     private BoardAdapter boardAdapter;
@@ -55,6 +63,16 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
     @Override
     public void fillBoardsList(List<Board> boardList) {
         boardAdapter.swapData(boardList);
+        compositeSubscription = new CompositeSubscription();
+
+        compositeSubscription.add(boardInfoClickedObservable
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onItemClicked, e -> Timber.d("Something went wrong clicking the board")));
+        compositeSubscription.add(boardSelectedObservable
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::changeActiveBoard, e -> Timber.d("Something went wrong clicking the board")));
     }
 
     @Override
@@ -64,9 +82,19 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
         boardsPresenter.buildView();
     }
 
+    public void onItemClicked(Board board){
+        homeView.gotoBoardInfoActivity(board);
+    }
+
+    public void changeActiveBoard(Board board){
+        Timber.d(board.getName());
+    }
+
     @Override
     public void onPause() {
         super.onPause();
+        compositeSubscription.unsubscribe();
+        compositeSubscription = null;
         boardsPresenter.detachView();
     }
 
@@ -85,6 +113,8 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
 
         boardAdapter = new BoardAdapter(false);
         boardRecycler.setAdapter(boardAdapter);
+        boardInfoClickedObservable = boardAdapter.getInfoSelected();
+        boardSelectedObservable = boardAdapter.getBoardSelected();
 
         homeView = (HomeView) getActivity();
 
@@ -97,6 +127,7 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
                         homeView.gotoPublicBoardsActivity();
                         break;
                     case R.id.action_goto_class_code:
+                        homeView.launchCourseCodeDialog();
                         break;
                 }
                 return false;

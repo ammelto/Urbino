@@ -21,12 +21,6 @@ public class BoardsPresenter extends BasePresenter<BoardsView> {
     }
 
     public void buildView(){
-        for(Board board : user.getBoards()){
-            Timber.d(board.getDescription());
-            Timber.d(board.getName());
-            Timber.d(board.getUrl());
-        }
-
         getView().fillBoardsList(user.getBoards());
     }
 

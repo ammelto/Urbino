@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.seamoss.urbino.base.BaseFragment;
 import io.seamoss.urbino.base.mvp.BaseView;
+import io.seamoss.urbino.data.models.Board;
 import io.seamoss.urbino.data.models.Subject;
 
 /**
@@ -12,4 +13,6 @@ import io.seamoss.urbino.data.models.Subject;
 
 public interface PublicBoardsView extends BaseView {
     void buildViewPager(List<Subject> subjects);
+
+    void gotoBoardInfoActivity(Board board);
 }

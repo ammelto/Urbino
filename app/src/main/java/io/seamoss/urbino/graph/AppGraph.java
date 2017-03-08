@@ -14,6 +14,7 @@ import io.seamoss.urbino.views.public_boards_list.PublicBoardsActivity;
 import io.seamoss.urbino.views.onboarding.OnboardingActivity;
 import io.seamoss.urbino.views.onboarding.signin.SigninActivity;
 import io.seamoss.urbino.views.public_boards_list.PublicBoardsFragment.PublicBoardsFragment;
+import io.seamoss.urbino.views.home.board_info.BoardInfoActivity;
 
 /**
  * Created by Alexander Melton on 2/11/2017.
@@ -40,4 +41,6 @@ public interface AppGraph {
     void inject(PublicBoardsActivity boardsFragment);
 
     void inject(PublicBoardsFragment publicBoardsFragment);
+
+    void inject(BoardInfoActivity boardInfoActivity);
 }
