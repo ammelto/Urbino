@@ -38,6 +38,20 @@
     <string name="code_dialog_cancel">Cancel</string>
     <string name="code_dialog_text">Enter the course code for a private or public board.</string>
 
+    <!-- Dialog for node -->
+    <string name="node_dialog_name">Node Name</string>
+    <string name="node_dialog_bonus">Bonus</string>
+    <string name="node_dialog_completed">%1$d out of %2$d people have completed this node</string>
+    <string name="node_dialog_description">Some sort of very long node description</string>
+    <string name="node_dialog_accept">Open Node</string>
+    <string name="node_dialog_cancel">Cancel</string>
+
+    <string-array name="challenges">
+        <item>Gain %1$d%% experience for this node per person who completes this node.</item>
+        <item>Gain %1$d%% experience for this node if you get every challenge question correct.</item>
+        <item>Gain %1$d%% experience for this node if you help another person in this node.</item>
+    </string-array>
+
     <!-- debug -->
     <string name="sample_string">Bacon ipsum dolor amet I have a 10 year old son. He has words. He is so good with these words it\'s unbelievable. I think my strongest asset maybe by far is my temperament. I have a placeholding temperament. That other text? Sadly, it’s no longer a 10. That other text? Sadly, it’s no longer a 10. If Trump Ipsum weren’t my own words, perhaps I’d be dating it. Lorem Ispum is a choke artist. It chokes! My text is long and beautiful, as, it has been well documented, are various other parts of my website. It’s about making placeholder text great again. That’s what people want, they want placeholder text to be great again. I think the only difference between me and the other placeholder text is that I’m more honest and my words are more beautiful. My text is long and beautiful, as, it has been well documented, are various other parts of my website. If Trump Ipsum weren’t my own words, perhaps I’d be dating it.</string>
 

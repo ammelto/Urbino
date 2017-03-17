@@ -13,8 +13,12 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "API_URL", "\"http://" + getLocalIp("wlan0") + ":8080/\""
-        buildConfigField "String", "API_URL_PROD", "\"http://10.0.2.2:8080/\""
+        buildConfigField "String", "API_URL_HOST", "\"http://" + getLocalIp("wlan0") + ":8080/\""
+        buildConfigField "String", "API_URL_WEBVIEW_HOST", "\"http://" + getLocalIp("wlan0") + ":8081\""
+        buildConfigField "String", "API_URL_WEBVIEW_LOCAL", "\"http://10.0.2.2:8081/\""
+        buildConfigField "String", "API_URL_LOCAL", "\"http://10.0.2.2:8080/\""
+        buildConfigField "String", "API_URL_WEBVIEW", "\"http://www.divisionista.com/\""
+        buildConfigField "String", "API_URL", "\"http://api.divisionista.com/\""
         buildConfigField "String", "API_KEY", "\"KEY\""
 
     }

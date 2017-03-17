@@ -14,4 +14,6 @@ public interface HomeView extends BaseView {
     void gotoBoardInfoActivity(Board board);
 
     void launchCourseCodeDialog();
+
+    void launchActiveBoard(Board board);
 }

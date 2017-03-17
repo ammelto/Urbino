@@ -7,10 +7,10 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
+        android:fitsSystemWindows="true"
         app:itemIconTint="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
         <android.support.design.widget.CollapsingToolbarLayout

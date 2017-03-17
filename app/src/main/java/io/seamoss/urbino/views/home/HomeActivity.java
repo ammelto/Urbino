@@ -1,6 +1,7 @@
 package io.seamoss.urbino.views.home;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import javax.inject.Inject;
@@ -10,6 +11,7 @@ import io.seamoss.urbino.Urbino;
 import io.seamoss.urbino.base.nav.BaseNavActivity;
 import io.seamoss.urbino.data.SharedPrefsManager;
 import io.seamoss.urbino.data.models.Board;
+import io.seamoss.urbino.views.active_board.ActiveBoardActivity;
 import io.seamoss.urbino.views.home.boards.BoardsFragment;
 import io.seamoss.urbino.views.public_boards_list.PublicBoardsActivity;
 import io.seamoss.urbino.views.home.board_info.BoardInfoActivity;
@@ -70,5 +72,13 @@ public class HomeActivity extends BaseNavActivity implements HomeView{
         CourseCodeDialog courseCodeDialog = new CourseCodeDialog();
 
         courseCodeDialog.show(getFragmentManager(), null);
+    }
+
+    @Override
+    public void launchActiveBoard(Board board) {
+        Intent intent = new Intent(this, ActiveBoardActivity.class);
+        intent.putExtras(getIntent());
+
+        startActivity(intent);
     }
 }

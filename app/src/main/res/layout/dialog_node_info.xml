@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/AppTheme.DoNotDim"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/dialog_node_title"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:text="@string/node_dialog_name"
+        android:textColor="@color/colorSecondaryText"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/node_dialog_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/node_dialog_description" />
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+        <View style="@style/Divider"/>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="?android:selectableItemBackground"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="76dp">
+
+            <ImageView
+                android:id="@+id/nodes_bonus_icon"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_whatshot_black_24dp"
+                android:padding="16dp"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/nodes_bonus_text"
+                android:paddingEnd="16dp"
+                android:paddingStart="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/node_dialog_bonus"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="13sp"
+                />
+
+        </LinearLayout>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/info_duration"
+            android:background="?android:selectableItemBackground"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="76dp">
+
+            <ImageView
+                android:id="@+id/node_people_icon"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/ic_person_black_24dp"
+                android:padding="16dp"
+                android:layout_width="72dp"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:paddingEnd="16dp"
+                android:paddingStart="0dp"
+                android:id="@+id/node_people_completed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/node_dialog_completed"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="13sp"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

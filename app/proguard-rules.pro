@@ -12,6 +12,10 @@
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+-keepclassmembers class io.seamoss.urbino.views.active_board.ActiveBoardPresenter {
+   public *;
+}
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface *;
+}
+-keepattributes JavascriptInterface

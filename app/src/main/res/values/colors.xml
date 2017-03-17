@@ -12,6 +12,9 @@
     <color name="colorDivider">#BDBDBD</color>
     <color name="greyTransparent">#b0000000</color>
 
+    <color name="nodeComplete">#008000</color>
+    <color name="nodeNotComplete">#ff0000</color>
+
     <!-- onboarding -->
     <color name="tab1">#8BC34A</color>
     <color name="tab2">#009688</color>

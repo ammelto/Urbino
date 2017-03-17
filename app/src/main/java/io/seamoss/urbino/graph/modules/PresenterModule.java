@@ -4,8 +4,10 @@ import dagger.Module;
 import dagger.Provides;
 import io.seamoss.urbino.data.api.UrbinoApi;
 import io.seamoss.urbino.data.models.User;
+import io.seamoss.urbino.views.active_board.ActiveBoardPresenter;
 import io.seamoss.urbino.views.home.HomePresenter;
 import io.seamoss.urbino.views.home.boards.BoardsPresenter;
+import io.seamoss.urbino.views.node.NodePresenter;
 import io.seamoss.urbino.views.public_boards_list.PublicBoardsPresenter;
 import io.seamoss.urbino.views.onboarding.OnboardingPresenter;
 import io.seamoss.urbino.views.onboarding.signin.SigninPresenter;
@@ -37,4 +39,10 @@ public class PresenterModule {
 
     @Provides
     BoardInfoPresenter providesBoardInfoPresenter(){return new BoardInfoPresenter();}
+
+    @Provides
+    ActiveBoardPresenter providesActiveBoardPresenter(){return new ActiveBoardPresenter();}
+
+    @Provides
+    NodePresenter providesNodePresenter(){return new NodePresenter();}
 }

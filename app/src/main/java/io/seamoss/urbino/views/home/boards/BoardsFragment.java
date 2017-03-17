@@ -88,6 +88,8 @@ public class BoardsFragment extends BaseFragment implements BoardsView {
 
     public void changeActiveBoard(Board board){
         Timber.d(board.getName());
+        HomeView homeview = (HomeView) getActivity();
+        homeview.launchActiveBoard(board);
     }
 
     @Override
