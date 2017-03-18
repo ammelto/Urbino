@@ -2,6 +2,7 @@ package io.seamoss.urbino.views.active_board;
 
 import android.animation.ObjectAnimator;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ import io.seamoss.urbino.R;
 import io.seamoss.urbino.Urbino;
 import io.seamoss.urbino.base.nav.BaseNavActivity;
 import io.seamoss.urbino.data.models.Node;
+import io.seamoss.urbino.views.node.NodeActivity;
 import timber.log.Timber;
 
 /**
@@ -108,7 +110,16 @@ public class ActiveBoardActivity extends BaseNavActivity implements ActiveBoardV
 
     @Override
     public void openNode(Node node) {
-        Timber.d("Opening Node");
+        Intent intent = new Intent(this, NodeActivity.class);
+        intent.putExtras(getIntent());
+        Bundle extras = new Bundle();
+        extras.putString("name", node.getName());
+        extras.putInt("challenge", node.getChallenge());
+        extras.putInt("multiplier", node.getMultiplier());
+        extras.putString("description", node.getDescription());
+        extras.putInt("people", node.getPeople());
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 
     @Override

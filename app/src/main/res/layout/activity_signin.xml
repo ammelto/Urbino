@@ -70,8 +70,10 @@
 
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/authentication_google_sign_in"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:layout_marginTop="85dp"
                 android:layout_gravity="center_horizontal"
                 app:buttonSize="wide"

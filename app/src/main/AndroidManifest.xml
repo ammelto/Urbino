@@ -41,7 +41,28 @@
                 android:value=".views.public_boards_list.PublicBoardsActivity" />
         </activity>
 
+        <activity android:name=".views.node.NodeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.active_board.ActiveBoardActivity" />
+        </activity>
+
         <activity android:name=".views.active_board.ActiveBoardActivity"/>
+
+        <activity android:name=".views.node.tasks.VideoPlayerActivity"
+            android:configChanges="orientation|screenSize|locale">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.node.NodeActivity"/>
+        </activity>
+
+        <activity android:name=".views.node.tasks.GameActivity"
+            android:configChanges="orientation|screenSize|locale">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.node.NodeActivity"/>
+        </activity>
+
 
     </application>
 

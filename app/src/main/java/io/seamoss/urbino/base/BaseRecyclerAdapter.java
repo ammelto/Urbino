@@ -27,6 +27,8 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
 
     protected List<T> elements;
 
+    private int viewtype;
+
     public BaseRecyclerAdapter() {
         elements = new ArrayList<>();
     }
@@ -124,8 +126,13 @@ public abstract class BaseRecyclerAdapter<T, VH extends RecyclerView.ViewHolder>
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
+        this.viewtype = viewType;
         View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutRes(), parent, false);
         return inflateViewHolder(view);
+    }
+
+    public int getViewtype() {
+        return viewtype;
     }
 
     @Override

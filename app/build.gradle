@@ -21,6 +21,8 @@ android {
         buildConfigField "String", "API_URL", "\"http://api.divisionista.com/\""
         buildConfigField "String", "API_KEY", "\"KEY\""
 
+        buildConfigField "String", "YOUTUBE_KEY", "\"AIzaSyC2c4r9RtnjD2v2inTyEGbkY8qGxZ7t72U\""
+
     }
     buildTypes {
         release {
@@ -49,6 +51,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
     })
 
     def appCompatVersion = "25.2.0"
@@ -93,6 +96,8 @@ dependencies {
     compile "com.squareup.retrofit2:converter-moshi:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
     compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
+
 
     /*--------------------- Google Services ---------------------*/
     compile 'com.google.android.gms:play-services-auth:10.2.0'
@@ -103,6 +108,7 @@ dependencies {
     compile 'io.reactivex:rxjava:1.2.4'
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
     compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+    compile 'org.apache.directory.studio:org.apache.commons.io:2.4'
 
     /*---------------------Debug stuff---------------------*/
     //
